@@ -1,0 +1,37 @@
+<h1>Update RIB</h1>
+
+<form action="/RIBs/update/{{RIB.id}}" method="post">
+  <div class="form-group">
+    <label for="companyname">Company Name*</label>
+    <input value="{{RIB.companyname}}" class="form-control" type="text" id="companyname" name="companyname" placeholder="Company name" required>
+  </div>
+
+  <div class="form-group">
+    <label for="HQId">Headquarter*</label>
+    <select class="form-control" id="HQId" name="HQId" required>
+      {{#list HQs}}
+      <option value="{{id}}" {{selected ../RIB.HQId id}}>{{name}}</option>
+      {{/list}}
+    </select>
+  </div>
+
+  <div class="form-group">
+    <label for="iban">IBAN*</label>
+    <input value="{{RIB.iban}}" class="form-control" type="text" id="iban" name="iban" placeholder="Ex : FR7630004015870002601171220" required>
+  </div>
+
+  <div class="form-group">
+    <label for="status">Status*</label>
+    <select class="form-control" id="status" name="status" required>    
+      <option value="Waiting" selected="selected">Waiting</option>
+      <option value="Certified">Certified</option>
+      <option value="Rejected">Rejected</option>
+    </select>
+  </div>
+
+  <div class="text-center">
+    <button type="submit" class="btn btn-primary">
+      Update
+    </button>
+  </div>
+</form>

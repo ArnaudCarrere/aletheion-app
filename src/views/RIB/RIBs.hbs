@@ -1,0 +1,46 @@
+<h1>RIBs</h1>
+
+<table class="table">
+ <thead>
+   <th>Company Name</th>
+   <th>Headquarter</th>
+   <th>IBAN</th>
+   <th>Status</th>
+   <th>Actions</th>
+ </thead>
+
+  {{#list RIBs}}
+
+  <tr>
+    <td>
+      <a class="btn btn-secondary btn-sm" href="/RIBs/id/{{id}}" role="button">
+        {{companyname}}
+      </a>
+    </td>
+    <td>
+      {{HQId}}
+    </td>
+    <td>
+      {{iban}}
+    </td>
+    <td>
+      {{status}}
+    </td>
+    <td>
+      <a class="btn btn-outline-secondary btn-sm" href="/RIBs/update/{{id}}" role="button">
+        Update
+      </a>
+      <a class="btn btn-outline-danger btn-sm" href="/RIBs/delete/{{id}}" role="button">
+        Delete
+      </a>
+    </td>
+  </tr>
+
+  {{/list}}
+</table>
+
+<div class="text-center">
+  <a class="btn btn-primary" href="/RIBs/create" role="button">
+    Add a RIB
+  </a>
+</div>

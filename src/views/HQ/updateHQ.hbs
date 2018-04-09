@@ -1,0 +1,40 @@
+<h1>Update Headquarter</h1>
+
+<form action="/HQs/update/{{HQ.id}}" method="post">
+  <div class="form-group">
+    <label for="name">Name*</label>
+    <input value="{{HQ.name}}" class="form-control" type="text" id="name" name="name" placeholder="Headquarter name" required>
+  </div>
+
+  <div class="form-group">
+    <label for="address">Address*</label>
+    <input value="{{HQ.address}}" class="form-control" type="text" id="address" name="address" placeholder="Address" required>
+  </div>
+
+  <div class="form-group">
+    <label for="siret">SIRET*</label>
+    <input value="{{HQ.siret}}" class="form-control" type="number" id="siret" name="siret" placeholder="14 digits code" required>
+  </div>
+
+  <div class="form-group">
+    <label for="touch">TouchID*</label>
+      <select class="form-control" id="touch" name="touch" required>    
+        <option value="To Configure" selected="selected">To Configure</option>
+        <option value="Configured">Configured</option>
+      </select> 
+  </div>
+
+  <div class="form-group">
+    <label for="face">FaceID*</label>
+      <select class="form-control" id="face" name="face" required>    
+        <option value="To Configure" selected="selected">To Configure</option>
+        <option value="Configured">Configured</option>
+      </select> 
+  </div>
+
+  <div class="text-center">
+    <button type="submit" class="btn btn-primary">
+      Update
+    </button>
+  </div>
+</form>

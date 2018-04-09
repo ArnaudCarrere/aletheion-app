@@ -1,0 +1,50 @@
+<h1>Headquarters</h1>
+
+<table class="table">
+ <thead>
+   <th>Name</th>
+   <th>Address</th>
+   <th>SIRET</th>
+   <th>TouchID</th>
+   <th>FaceID</th>
+   <th>Actions</th>
+ </thead>
+
+  {{#list HQs}}
+
+  <tr>
+    <td>
+      <a class="btn btn-secondary btn-sm" href="/HQs/id/{{id}}" role="button">
+        {{name}}
+      </a>
+    </td>
+    <td>
+      {{address}}
+    </td>
+    <td>
+      {{siret}}
+    </td>
+    <td>
+      {{touch}}
+    </td>
+    <td>
+      {{face}}
+    </td>
+    <td>
+      <a class="btn btn-outline-secondary btn-sm" href="/HQs/update/{{id}}" role="button">
+        Update
+      </a>
+      <a class="btn btn-outline-danger btn-sm" href="/HQs/delete/{{id}}" role="button">
+        Delete
+      </a>
+    </td>
+  </tr>
+
+  {{/list}}
+</table>
+
+<div class="text-center">
+  <a class="btn btn-primary" href="/HQs/create" role="button">
+    Add a Headquarter
+  </a>
+</div>

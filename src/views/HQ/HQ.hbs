@@ -1,0 +1,18 @@
+<h1>Headquarter</h1>
+
+<div>
+  <div>Name of headquarter : {{HQ.name}}</div>
+  <div>Address : {{HQ.address}}</div>
+  <div>SIRET : {{HQ.siret}}</div>
+  <div>TouchID : {{HQ.touch}}</div>
+  <div>FaceID : {{HQ.face}}</div>
+</div>
+
+<div class="text-center">
+  <a class="btn btn-secondary" href="/HQs/update/{{HQ.id}}" role="button">
+    Update
+  </a>
+  <a class="btn btn-danger" href="/HQs/delete/{{HQ.id}}" role="button">
+    Delete
+  </a>
+</div>

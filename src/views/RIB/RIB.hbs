@@ -1,0 +1,17 @@
+<h1>RIB</h1>
+
+<div>
+  <div>Company name : {{RIB.companyname}}</div>
+  <div>Headquarter : {{RIB.HQId}}</div>
+  <div>IBAN : {{RIB.iban}}</div>
+  <div>Status : {{RIB.status}}</div>
+</div>
+
+<div class="text-center">
+  <a class="btn btn-secondary" href="/RIBs/update/{{RIB.id}}" role="button">
+    Update
+  </a>
+  <a class="btn btn-danger" href="/RIBs/delete/{{RIB.id}}" role="button">
+    Delete
+  </a>
+</div>
