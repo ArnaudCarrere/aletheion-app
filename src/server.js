@@ -76,6 +76,7 @@ server.get('/HQs/delete/:id', HQController.getDeleteHQ);
 
 server.get('/RIBs', RIBController.getRIBs);
 server.get('/RIBs/id/:id', RIBController.getRIB);
+server.get('/aRIBs/HQId/:HQid/status/:status', RIBController.getRIBHQIdStatus)
 server.get('/RIBs/create', RIBController.getCreateRIB);
 server.post('/RIBs/create', RIBController.postCreateRIB);
 server.get('/RIBs/update/:id', RIBController.getUpdateRIB);
