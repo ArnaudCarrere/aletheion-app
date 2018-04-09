@@ -45,6 +45,41 @@ const RIB = (_id) => {
   });
 }
 
+const CertifiedRIB = (_id) => {
+  return RIBModel.getRIB(_id)
+  .then((data) => {
+    if (data === null) {
+      throw new Error('noRIBError');
+    }
+    let response = {
+      id: data._id,
+      iban: data.iban,
+      HQId: data.HQId,
+      companyname: data.companyname,
+      status: "Certified",
+    };
+    return response;
+  });
+}
+
+const RejectedRIB = (_id) => {
+  return RIBModel.getRIB(_id)
+  .then((data) => {
+    if (data === null) {
+      throw new Error('noRIBError');
+    }
+
+    let response = {
+      id: data._id,
+      iban: data.iban,
+      HQId: data.HQId,
+      companyname: data.companyname,
+      status: "Rejected",
+    };
+    return response;
+  });
+}
+
 const RIBsHQIdWaiting = (_id) => {
   return RIBModel.getRIBsHQId(_id)
   .then((data) => {
@@ -324,6 +359,32 @@ export default {
     }, (err) => {
       console.log(err);
       res.status(Errors(err).code).send(Errors(err));
+    });
+  },
+
+  postCertifyRIBApi: (req, res) => {
+    CertifiedRIB(req.params.id)
+    .then((data) => {
+      updateRIB(req.params.id, data)
+      .then((databis) => {
+        res.send('ok');
+      }, (err) => {
+        console.log(err);
+        res.status(Errors(err).code).send(Errors(err));
+      });
+    });
+  },
+
+  postRejectRIBApi: (req, res) => {
+    RejectedRIB(req.params.id)
+    .then((data) => {
+      updateRIB(req.params.id, data)
+      .then((databis) => {
+        res.send('ok');
+      }, (err) => {
+        console.log(err);
+        res.status(Errors(err).code).send(Errors(err));
+      });
     });
   },
 
