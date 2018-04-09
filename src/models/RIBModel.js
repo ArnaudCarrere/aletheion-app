@@ -21,6 +21,10 @@ export default {
     return Model.findOne({ _id }).exec();
   },
 
+  getRIBHQIdStatus: (_HQId, _status) => {
+    return Model.findOne({ HQId: _HQId, status: _status }).exec();
+  },
+
   createRIB: (RIB) => {
     return Model.create({
       companyname: RIB.companyname,

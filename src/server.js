@@ -93,6 +93,8 @@ server.post('/api/HQs/delete/:id', HQController.postDeleteHQApi);
 
 server.get('/api/RIBs', RIBController.getRIBsApi);
 server.get('/api/RIBs/id/:id', RIBController.getRIBApi);
+server.get('/api/RIBs/HQId/:HQid/status/:status', RIBController.getRIBHQIdStatusApi)
 server.post('/api/RIBs/create', RIBController.postCreateRIBApi);
 server.post('/api/RIBs/update/:id', RIBController.postUpdateRIBApi);
 server.post('/api/RIBs/delete/:id', RIBController.postDeleteRIBApi);
+

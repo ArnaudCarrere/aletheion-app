@@ -45,6 +45,27 @@ const RIB = (_id) => {
   });
 }
 
+const RIBHQIdStatus = (HQId, status) => {
+  return RIBModel.getRIBHQIdStatus(HQId, status)
+  .then((data) => {
+    if (data === null) {
+      throw new Error('noRIBsError');
+    }
+
+    let response = [];
+    for (let RIB of data){
+      response.push({
+        id: RIB._id,
+        HQId: RIB.HQId,
+        iban: RIB.iban,
+        companyname: RIB.companyname,
+        status: RIB.status,
+      });
+    }
+    return _.sortBy(response, 'companyname');
+  });
+}
+
 const createRIB = (RIB) => {
   return RIBModel.createRIB(RIB);
 }
@@ -73,6 +94,16 @@ export default {
     RIB(req.params.id)
     .then((data) => {
       res.render('RIB/RIB', { RIB: data });
+    }, (err) => {
+      console.log(err);
+      res.status(Errors(err).code).send(Errors(err));
+    });
+  },
+
+  getRIBHQIdStatus: (req, res) => {
+    RIBHQIdStatus(req.params.HQId,req.params.status)
+    .then((data) => {
+      res.render('RIB/RIBHQIdStatus', { RIB: data });
     }, (err) => {
       console.log(err);
       res.status(Errors(err).code).send(Errors(err));
@@ -166,6 +197,17 @@ export default {
       res.status(Errors(err).code).send(Errors(err));
     });
   },
+
+  getRIBHQIdStatusApi: (req, res) => {
+    RIBHQIdStatus(req.params.HQId,req.params.status)
+    .then((data) => {
+      res.send(data);
+    }, (err) => {
+      console.log(err);
+      res.status(Errors(err).code).send(Errors(err));
+    });
+  },
+
 
   postCreateRIBApi: (req, res) => {
     let RIB = {
