@@ -76,7 +76,9 @@ server.get('/HQs/delete/:id', HQController.getDeleteHQ);
 
 server.get('/RIBs', RIBController.getRIBs);
 server.get('/RIBs/id/:id', RIBController.getRIB);
-server.get('/RIBs/HQId/:HQid/status/:status', RIBController.getRIBHQIdStatus)
+server.get('/RIBs/HQIdWaiting/:id', RIBController.getRIBsHQIdWaiting)
+server.get('/RIBs/HQIdCertified/:id', RIBController.getRIBsHQIdCertified)
+server.get('/RIBs/HQIdRejected/:id', RIBController.getRIBsHQIdRejected)
 server.get('/RIBs/create', RIBController.getCreateRIB);
 server.post('/RIBs/create', RIBController.postCreateRIB);
 server.get('/RIBs/update/:id', RIBController.getUpdateRIB);
@@ -94,7 +96,9 @@ server.post('/api/HQs/delete/:id', HQController.postDeleteHQApi);
 
 server.get('/api/RIBs', RIBController.getRIBsApi);
 server.get('/api/RIBs/id/:id', RIBController.getRIBApi);
-server.get('/api/RIBs/HQId/:HQid/status/:status', RIBController.getRIBHQIdStatusApi)
+server.get('/api/RIBs/HQIdWaiting/:id', RIBController.getRIBsHQIdWaitingApi)
+server.get('/api/RIBs/HQIdCertified/:id', RIBController.getRIBsHQIdCertifiedApi)
+server.get('/api/RIBs/HQIdRejected/:id', RIBController.getRIBsHQIdRejectedApi)
 server.post('/api/RIBs/create', RIBController.postCreateRIBApi);
 server.post('/api/RIBs/update/:id', RIBController.postUpdateRIBApi);
 server.post('/api/RIBs/delete/:id', RIBController.postDeleteRIBApi);

@@ -17,12 +17,12 @@ export default {
     return Model.find({}).exec();
   },
 
-  getRIB: (_id) => {
-    return Model.findOne({ _id }).exec();
+  getRIBsHQId: (_id) => {
+    return Model.find({ HQId: _id }).exec();
   },
 
-  getRIBHQIdStatus: (_HQId, _status) => {
-    return Model.findOne({ HQId: _HQId, status: _status }).exec();
+  getRIB: (_id) => {
+    return Model.findOne({ _id }).exec();
   },
 
   createRIB: (RIB) => {

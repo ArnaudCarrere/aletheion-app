@@ -45,22 +45,67 @@ const RIB = (_id) => {
   });
 }
 
-const RIBHQIdStatus = (HQId, status) => {
-  return RIBModel.getRIBHQIdStatus(HQId, status)
+const RIBsHQIdWaiting = (_id) => {
+  return RIBModel.getRIBsHQId(_id)
   .then((data) => {
     if (data === null) {
       throw new Error('noRIBsError');
     }
-
     let response = [];
     for (let RIB of data){
-      response.push({
-        id: RIB._id,
-        HQId: RIB.HQId,
-        iban: RIB.iban,
-        companyname: RIB.companyname,
-        status: RIB.status,
-      });
+      if (RIB.status == "Waiting"){
+        response.push({
+          id: RIB._id,
+          HQId: RIB.HQId,
+          iban: RIB.iban,
+          companyname: RIB.companyname,
+          status: RIB.status,
+        });
+      }
+    }
+    return _.sortBy(response, 'companyname');
+  });
+}
+
+const RIBsHQIdCertified = (_id) => {
+  return RIBModel.getRIBsHQId(_id)
+  .then((data) => {
+    if (data === null) {
+      throw new Error('noRIBsError');
+    }
+    let response = [];
+    for (let RIB of data){
+      if (RIB.status == "Certified"){
+        response.push({
+          id: RIB._id,
+          HQId: RIB.HQId,
+          iban: RIB.iban,
+          companyname: RIB.companyname,
+          status: RIB.status,
+        });
+      }
+    }
+    return _.sortBy(response, 'companyname');
+  });
+}
+
+const RIBsHQIdRejected = (_id) => {
+  return RIBModel.getRIBsHQId(_id)
+  .then((data) => {
+    if (data === null) {
+      throw new Error('noRIBsError');
+    }
+    let response = [];
+    for (let RIB of data){
+      if (RIB.status == "Rejected"){
+        response.push({
+          id: RIB._id,
+          HQId: RIB.HQId,
+          iban: RIB.iban,
+          companyname: RIB.companyname,
+          status: RIB.status,
+        });
+      }
     }
     return _.sortBy(response, 'companyname');
   });
@@ -100,10 +145,30 @@ export default {
     });
   },
 
-  getRIBHQIdStatus: (req, res) => {
-    RIBHQIdStatus(req.params.HQId,req.params.status)
+  getRIBsHQIdWaiting: (req, res) => {
+    RIBsHQIdWaiting(req.params.id)
     .then((data) => {
-      res.render('RIB/RIBHQIdStatus', { RIB: data });
+      res.render('RIB/RIBsHQIdWaiting', { RIBsHQIdWaiting: data });
+    }, (err) => {
+      console.log(err);
+      res.status(Errors(err).code).send(Errors(err));
+    });
+  },
+
+  getRIBsHQIdCertified: (req, res) => {
+    RIBsHQIdCertified(req.params.id)
+    .then((data) => {
+      res.render('RIB/RIBsHQIdCertified', { RIBsHQIdCertified: data });
+    }, (err) => {
+      console.log(err);
+      res.status(Errors(err).code).send(Errors(err));
+    });
+  },
+
+  getRIBsHQIdRejected: (req, res) => {
+    RIBsHQIdRejected(req.params.id)
+    .then((data) => {
+      res.render('RIB/RIBsHQIdRejected', { RIBsHQIdRejected: data });
     }, (err) => {
       console.log(err);
       res.status(Errors(err).code).send(Errors(err));
@@ -198,8 +263,8 @@ export default {
     });
   },
 
-  getRIBHQIdStatusApi: (req, res) => {
-    RIBHQIdStatus(req.params.HQId,req.params.status)
+  getRIBsHQIdWaitingApi: (req, res) => {
+    RIBsHQIdWaiting(req.params.id)
     .then((data) => {
       res.send(data);
     }, (err) => {
@@ -208,6 +273,25 @@ export default {
     });
   },
 
+  getRIBsHQIdCertifiedApi: (req, res) => {
+    RIBsHQIdCertified(req.params.id)
+    .then((data) => {
+      res.send(data);
+    }, (err) => {
+      console.log(err);
+      res.status(Errors(err).code).send(Errors(err));
+    });
+  },
+
+  getRIBsHQIdRejectedApi: (req, res) => {
+    RIBsHQIdRejected(req.params.id)
+    .then((data) => {
+      res.send(data);
+    }, (err) => {
+      console.log(err);
+      res.status(Errors(err).code).send(Errors(err));
+    });
+  },
 
   postCreateRIBApi: (req, res) => {
     let RIB = {
