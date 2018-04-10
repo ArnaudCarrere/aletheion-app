@@ -102,6 +102,5 @@ server.get('/api/RIBs/HQIdRejected/:id', RIBController.getRIBsHQIdRejectedApi)
 server.post('/api/RIBs/create', RIBController.postCreateRIBApi);
 server.post('/api/RIBs/update/:id', RIBController.postUpdateRIBApi);
 server.post('/api/RIBs/delete/:id', RIBController.postDeleteRIBApi);
-server.post('/api/RIBs/certify/:id', RIBController.postCertifyRIBApi);
-server.post('/api/RIBs/reject/:id', RIBController.postRejectRIBApi);
-
+server.get('/api/RIBs/certify/:id', RIBController.getCertifyRIBApi);
+server.get('/api/RIBs/reject/:id', RIBController.getRejectRIBApi);

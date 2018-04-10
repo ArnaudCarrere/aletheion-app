@@ -362,7 +362,7 @@ export default {
     });
   },
 
-  postCertifyRIBApi: (req, res) => {
+  getCertifyRIBApi: (req, res) => {
     CertifiedRIB(req.params.id)
     .then((data) => {
       updateRIB(req.params.id, data)
@@ -375,7 +375,7 @@ export default {
     });
   },
 
-  postRejectRIBApi: (req, res) => {
+  getRejectRIBApi: (req, res) => {
     RejectedRIB(req.params.id)
     .then((data) => {
       updateRIB(req.params.id, data)
