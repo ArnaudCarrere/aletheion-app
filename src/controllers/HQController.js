@@ -61,6 +61,24 @@ const HQ = (_id) => {
   });
 }
 
+const ConfiguredHQ = (_id) => {
+  return HQModel.getHQ(_id)
+  .then((data) => {
+    if (data === null) {
+      throw new Error('noHQError');
+    }
+    let response = {
+      id: data._id,
+      name: data.name,
+      address: data.address,
+      siret: data.siret,
+      touch: "Configured",
+      face: "Configured",
+    };
+    return response;
+  });
+}
+
 const createHQ = (HQ) => {
   // On fait appel à la fonction createHQ du model
   // Celle ci renvoie le HQ dont l'id est _id
@@ -185,6 +203,19 @@ export default {
     }, (err) => {
       console.log(err);
       res.status(Errors(err).code).send(Errors(err));
+    });
+  },
+
+  getConfiguredHQApi: (req, res) => {
+    ConfiguredHQ(req.params.id)
+    .then((data) => {
+      updateHQ(req.params.id, data)
+      .then((databis) => {
+        res.send('ok');
+      }, (err) => {
+        console.log(err);
+        res.status(Errors(err).code).send(Errors(err));
+      });
     });
   },
 

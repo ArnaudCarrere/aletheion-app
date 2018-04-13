@@ -89,6 +89,7 @@ server.get('/RIBs/delete/:id', RIBController.getDeleteRIB);
 server.get('/api/', HomeController.getIndexApi);
 
 server.get('/api/HQs', HQController.getHQsApi);
+server.get('/api/HQs/configured/:id', HQController.getConfiguredHQApi);
 server.get('/api/HQs/id/:id', HQController.getHQApi);
 server.post('/api/HQs/create', HQController.postCreateHQApi);
 server.post('/api/HQs/update/:id', HQController.postUpdateHQApi);
